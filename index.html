@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Round Robin Visualizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body class="min-h-screen font-[Poppins] relative">
+    <div id="particles-js" class="absolute inset-0 z-0"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-50/80 via-white/50 to-blue-50/80 z-0"></div>
+    
+    <div class="container mx-auto px-4 py-8 opacity-0 relative z-10" id="mainContainer">
+        <h1 class="text-5xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500 hover:scale-105 transition-transform duration-300">
+            Round Robin CPU Scheduling Visualizer
+        </h1>
+
+        <div class="bg-white/80 backdrop-blur-sm rounded-xl p-8 shadow-2xl mb-8 transform hover:scale-[1.02] transition-all duration-300">
+            <div class="flex gap-6 mb-8">
+                <input type="number" id="timeQuantum" placeholder="Time Quantum" 
+                    class="px-6 py-3 rounded-lg border-2 border-purple-200 focus:ring-4 focus:ring-purple-300 focus:border-transparent transition-all duration-300 w-48 text-lg">
+                <button onclick="addProcess()" 
+                    class="px-8 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg hover:from-purple-700 hover:to-purple-800 transition-all duration-300 hover:scale-105 hover:shadow-lg text-lg font-medium">
+                    Add Process
+                </button>
+                <button onclick="startVisualization()" id="startBtn" 
+                    class="px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 hover:scale-105 hover:shadow-lg text-lg font-medium">
+                    Start Visualization
+                </button>
+            </div>
+
+            <div class="grid grid-cols-3 gap-8">
+                <div class="stat-card">
+                    <div class="text-gray-600 text-lg">Average Waiting Time</div>
+                    <div id="avgWaitingTime" class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">0.00</div>
+                </div>
+                <div class="stat-card">
+                    <div class="text-gray-600 text-lg">Average Turnaround Time</div>
+                    <div id="avgTurnaroundTime" class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">0.00</div>
+                </div>
+                <div class="stat-card">
+                    <div class="text-gray-600 text-lg">Current Time</div>
+                    <div id="currentTime" class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white/80 backdrop-blur-sm rounded-xl p-8 shadow-2xl mb-8 transform hover:scale-[1.02] transition-all duration-300">
+            <h2 class="text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">Gantt Chart</h2>
+            <div id="ganttChart" class="h-24 bg-gray-100 rounded-xl relative overflow-x-auto"></div>
+        </div>
+
+        <div class="bg-white/80 backdrop-blur-sm rounded-xl p-8 shadow-2xl transform hover:scale-[1.02] transition-all duration-300">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-gradient-to-r from-purple-50 to-blue-50">
+                            <th class="px-6 py-4 text-left text-lg font-semibold text-gray-700">Process ID</th>
+                            <th class="px-6 py-4 text-left text-lg font-semibold text-gray-700">Arrival Time</th>
+                            <th class="px-6 py-4 text-left text-lg font-semibold text-gray-700">Burst Time</th>
+                            <th class="px-6 py-4 text-left text-lg font-semibold text-gray-700">Waiting Time</th>
+                            <th class="px-6 py-4 text-left text-lg font-semibold text-gray-700">Turnaround Time</th>
+                            <th class="px-6 py-4 text-left text-lg font-semibold text-gray-700">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="processTable"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
