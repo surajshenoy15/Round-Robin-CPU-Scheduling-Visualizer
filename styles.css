@@ -213,3 +213,45 @@ h1 span:hover {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
 }
+
+/* Mobile Styles */
+@media (max-width: 640px) {
+    body {
+        padding: 0 1rem;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Adjust heading size for mobile */
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr; /* Stack cards vertically on mobile */
+    }
+
+    .bg-white-80 {
+        padding: 1rem;
+    }
+
+    .flex {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    input[type="number"],
+    button {
+        width: 100%; /* Full width for inputs and buttons */
+    }
+
+    table {
+        font-size: 0.875rem; /* Smaller font size for tables */
+    }
+}
